@@ -1,11 +1,12 @@
 Package: neiss
-Title: What the Package Does (one line, title case)
+Title: Data from National Electronic Injury Surveillance System
 Version: 0.0.0.9000
 Authors@R: c(
     person("Hadley", "Wickham", , "hadley@rstudio.com", role = c("aut", "cre")),
     person("RStudio", role = "cph")
   )
-Description: What the package does (one paragraph).
+Description: Complete data for the NEISS surveillance system which is a
+    sample of all accidents reported to emergency rooms in the US.
 Depends:
     R (>= 3.2.3)
 License: GPL-3
