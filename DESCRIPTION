@@ -6,6 +6,8 @@ Authors@R: c(
     person("RStudio", role = "cph")
   )
 Description: What the package does (one paragraph).
-Depends: R (>= 3.2.3)
+Depends:
+    R (>= 3.2.3)
 License: GPL-3
 LazyData: true
+RoxygenNote: 5.0.1
