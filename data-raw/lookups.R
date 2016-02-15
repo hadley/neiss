@@ -24,10 +24,18 @@ disposition <- c(
   "9" = NA
 )
 
+fmv <- c(
+  "0" = "No fire/flame/smoke",
+  "1" = "Fire dept attended",
+  "2" = "Fire dept did not attend",
+  "3" = "Fire dept attendence not recorded"
+)
+
 lookups <- list(
   body_part = lookups$ddlBodyPart,
   diag = lookups$ddlDiagnosis,
   location = lookups$ddlLocation,
+  fmv = fmv,
   disposition = disposition
 )
 
