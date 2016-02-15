@@ -23,8 +23,8 @@
 #'   \item{body_part}{Most seriously injured body part}
 #'   \item{disposition}{Final disposition of case after university visit}
 #'   \item{location}{Locale where injury occurred.}
-#'   \item{fmv}{???}
-#'   \item{prod1,prod2}{Consumer product codes}
+#'   \item{fmv}{Fire department involvement}
+#'   \item{prod1,prod2}{Consumer product codes. Order is not important.}
 #'   \item{narrative}{Description of what victim was doing, products involved,
 #'    and locale of the incident (all upper case).}
 #' }

@@ -43,6 +43,7 @@ injuries <- all %>%
     diag =        lookup(diag, lookups$diag),
     diag_other =  tolower(diag_other),
     location =    lookup(location, lookups$location),
+    fmv =         lookup(fmv, lookups$fmv),
     disposition = lookup(disposition, lookups$disposition),
     race_other =  tolower(race_other)
   ) %>%
