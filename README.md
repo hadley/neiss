@@ -9,3 +9,14 @@ It currently contains three datasets:
 * `population`: population of the US by age, sex, and year
 
 Inspired by [flowing data](http://flowingdata.com/2016/02/09/why-people-visit-the-emergency-room/).
+
+## Installation
+
+`neiss` is not currently on CRAN but you can install it with devtools:
+
+```R
+# install.packages("devtools")
+devtools::install_github("hadley/neiss")
+```
+
+But please note that this will take a while to download because the data is quite large.
