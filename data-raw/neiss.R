@@ -2,7 +2,17 @@ library(readxl)
 library(purrr)
 library(dplyr)
 
-files <- dir("data-raw", pattern = "\\.xlsx$", full.names = TRUE)
+# Ensure we have local copy -----------------------------------------------
+
+names <- paste0("NEISS-data-", 2009:2014, "-updated-12MAY2015.xlsx")
+local <- file.path("data-raw", names)
+remote <- paste0("http://www.cpsc.gov/Global/Neiss_prod/", names)
+
+# Download missing files
+missing <- !file.exists(local)
+map2(remote[missing], local[missing], download.file)
+
+# Read excel files --------------------------------------------------------
 
 col_types <- c(
   case_num    = "text",
@@ -24,11 +34,12 @@ col_types <- c(
   prod2       = "numeric",
   narrative   = "text"
 )
-raw <- files %>% map(read_excel, col_types = col_types)
+raw <- local %>% map(read_excel, col_types = col_types)
 
 all <- bind_rows(raw)
 names(all)[1] <- "case_num"
 
+# Convert codes to values -------------------------------------------------
 
 lookups <- readRDS("data-raw/lookups.rds")
 lookup <- function(needle, haystack) {
