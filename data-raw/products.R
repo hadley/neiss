@@ -1,17 +1,14 @@
-library(readr)
+library(readxl)
 library(dplyr)
 library(stringr)
 
-all <- read_csv("data-raw/product-codes-tabula.csv") %>%
-  filter(Code != "Code", Title != "Notes")
+# Retrieved via personal correspondence
+all <- read_excel("data-raw/NEISS-formats.xlsx")
 
 products <- all %>%
-  select(code = Code, title = Title) %>%
-  filter(title != "") %>%
-  mutate(
-    deleted = str_detect(code, fixed("*")),
-    code = as.integer(str_replace_all(code, fixed("*"), ""))
-  )
+  filter(FORMAT_NAME == "PROD") %>%
+  select(code = FORMAT, title = LABEL) %>%
+  mutate(title = tolower(title), code = as.integer(code))
 
 all_codes <- unique(c(injuries$prod1, injuries$prod2))
 setdiff(all_codes, products$code)
