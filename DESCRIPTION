@@ -9,7 +9,7 @@ Description: Complete data for the NEISS surveillance system which is a
     sample of all accidents reported to emergency rooms in the US.
 Depends:
     R (>= 3.2.3)
-License: GPL-3
+License: CC0
 LazyData: true
 RoxygenNote: 5.0.1
 URL: https://github.com/hadley/neiss
