@@ -39,4 +39,3 @@ United States and its territories. This data set contains all data from
 2009 to 2014.
 }
 \keyword{datasets}
-

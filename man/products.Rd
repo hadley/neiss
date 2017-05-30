@@ -19,4 +19,3 @@ products
 Descriptions of the NEISS product codes.
 }
 \keyword{datasets}
-

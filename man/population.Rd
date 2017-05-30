@@ -22,4 +22,3 @@ population
 Estimates of US population by year and sex
 }
 \keyword{datasets}
-
