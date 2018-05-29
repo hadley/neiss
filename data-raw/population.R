@@ -1,7 +1,5 @@
-library(dplyr)
-library(readr)
-library(tidyr)
-library(stringr)
+library(tidyverse)
+filter <- dplyr::filter
 
 # http://www.census.gov/popest/data/intercensal/national/nat2010.html
 old <- read_csv("data-raw/US-EST00INT-ALLDATA.csv")
