@@ -1,15 +1,16 @@
+library(tidyverse)
 library(readxl)
-library(purrr)
-library(dplyr)
+library(fs)
 
 # Ensure we have local copy -----------------------------------------------
 
-names <- paste0("NEISS-data-", 2009:2014, "-updated-12MAY2015.xlsx")
-local <- file.path("data-raw", names)
-remote <- paste0("http://www.cpsc.gov/Global/Neiss_prod/", names)
+year <- 2009:2016
+names <- str_glue("{year}/neiss{year}.xlsx")
+local <- path("data-raw", path_file(names))
+remote <- paste0("https://www.cpsc.gov/cgibin/NEISSQuery/Data/Archived%20Data/", names)
 
 # Download missing files
-missing <- !file.exists(local)
+missing <- !file_exists(local)
 map2(remote[missing], local[missing], download.file)
 
 # Read excel files --------------------------------------------------------
@@ -17,27 +18,29 @@ map2(remote[missing], local[missing], download.file)
 col_types <- c(
   case_num    = "text",
   trmt_date   = "date",
-  psu         = "numeric",
-  weight      = "numeric",
-  stratum     = "text",
   age         = "numeric",
   sex         = "text",
   race        = "text",
   race_other  = "text",
+  body_part   = "numeric",
   diag        = "numeric",
   diag_other  = "text",
-  body_part   = "numeric",
   disposition = "numeric",
   location    = "numeric",
   fmv         = "numeric",
   prod1       = "numeric",
   prod2       = "numeric",
-  narrative   = "text"
+  narrative1  = "text",
+  narrative2  = "text",
+  stratum     = "text",
+  psu         = "numeric",
+  weight      = "numeric"
 )
+
 raw <- local %>% map(read_excel, col_types = col_types)
 
 all <- bind_rows(raw)
-names(all)[1] <- "case_num"
+names(all) <- names(col_types)
 
 # Convert codes to values -------------------------------------------------
 
@@ -48,7 +51,6 @@ lookup <- function(needle, haystack) {
 
 injuries <- all %>%
   mutate(
-    case_num =    as.integer(case_num),
     trmt_date =   as.Date(trmt_date),
     body_part =   lookup(body_part, lookups$body_part),
     diag =        lookup(diag, lookups$diag),
