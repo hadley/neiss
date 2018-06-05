@@ -1,8 +1,7 @@
 #' Estimates of US population by year and sex
 #'
 #' @source The US census:
-#'  \url{http://www.census.gov/popest/data/intercensal/national/nat2010.html}
-#'  and \url{https://www.census.gov/popest/data/state/asrh/2014/SC-EST2014-AGESEX-CIV.html}
+#'  \url{https://wonder.cdc.gov/Bridged-Race-v2016.HTML}
 #' @format \describe{
 #'  \item{year}{Range: 2000-2014}
 #'  \item{age}{Range: 0-84}
