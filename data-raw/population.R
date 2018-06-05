@@ -4,7 +4,7 @@
 library(tidyverse)
 filter <- dplyr::filter
 
-file_in <- "Bridged-Race Population Estimates 1990-2016.txt"
+file <- "Bridged-Race Population Estimates 1990-2016.txt"
 year_min <- 2000
 year_max <- 2014
 age_min <- 0
