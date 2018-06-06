@@ -4,23 +4,21 @@
 library(tidyverse)
 filter <- dplyr::filter
 
-file <- "Bridged-Race Population Estimates 1990-2016.txt"
-year_min <- 2000
-year_max <- 2014
-age_min <- 0
-age_max <- 84
+pop_raw <- read_tsv(
+  "data-raw/Bridged-Race Population Estimates 1990-2016.txt",
+  col_types = cols(
+    .default = col_skip(),
+    `Yearly July 1st Estimates` = col_integer(),
+    `Age Code` = col_integer(),
+    Gender = col_character(),
+    Notes = col_character(),
+    Population = col_integer()
+  )
+)
 
-#===============================================================================
-
-population <-
-  read_tsv(
-    file,
-    col_types = cols(
-      .default = col_integer(),
-      Notes = col_character(),
-      Gender = col_character()
-    )
-  ) %>%
+# Failures are expected because there is trailing footnotes at the end of
+# the file
+population <- pop_raw %>%
   filter(is.na(Notes)) %>%
   select(
     year = "Yearly July 1st Estimates",
@@ -28,7 +26,7 @@ population <-
     sex = "Gender",
     n = "Population"
   ) %>%
-  filter(year >= year_min, year <= year_max, age >= age_min, age <= age_max) %>%
+  filter(year >= 2000, year <= 2016, age >= 0, age <= 84) %>%
   mutate(sex = str_to_lower(sex))
 
 use_data(population, overwrite = TRUE)
