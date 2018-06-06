@@ -55,11 +55,14 @@ lookup <- function(needle, haystack) {
 injuries <- all %>%
   mutate(
     trmt_date =   as.Date(trmt_date),
+    sex =         lookup(sex, lookups$sex),
+    race =        lookup(race, lookups$race),
     body_part =   lookup(body_part, lookups$body_part),
     diag =        lookup(diag, lookups$diag),
     diag_other =  tolower(diag_other),
     location =    lookup(location, lookups$location),
     fmv =         lookup(fmv, lookups$fmv),
+    prod2 =       na_if(prod2, 0),
     disposition = lookup(disposition, lookups$disposition),
     race_other =  tolower(race_other),
     narrative =   paste0(narrative1, coalesce(narrative2, "")),
@@ -70,5 +73,11 @@ injuries <- all %>%
 
 # Ages above 200 = (age - 200) / 12
 injuries$age[injuries$age > 200] <- (injuries$age[injuries$age > 200] - 200) / 12
+
+injuries %>% count(sex)
+injuries %>% count(race)
+injuries %>% count(race_other, sort = TRUE)
+injuries %>% count(diag, sort = TRUE)
+injuries %>% count(location, sort = TRUE)
 
 usethis::use_data(injuries, overwrite = TRUE, compress = "gzip")

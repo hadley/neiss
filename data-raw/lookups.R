@@ -11,7 +11,7 @@ names(options) <- selects %>% html_attr("name")
 desc <- options %>% map(. %>% html_text())
 val <- options %>% map(. %>% html_attr("value") %>% as.integer())
 
-lookups <- map2(desc, val, setNames) %>% map(~ ifelse(. == "", NA, .))
+raw_lookups <- map2(desc, val, setNames) %>% map(~ ifelse(. == "", NA, .))
 
 disposition <- c(
   "0" = "No injury",
@@ -31,12 +31,24 @@ fmv <- c(
   "3" = "Fire dept attendence not recorded"
 )
 
+race <- c(
+  "0" = "Not stated",
+  "1" = "White",
+  "2" = "Black",
+  "3" = "Other",
+  "4" = "Asian",
+  "5" = "Hispanic",
+  "6" = "Pacific Islander"
+)
+
 lookups <- list(
-  body_part = lookups$ddlBodyPart,
-  diag = lookups$ddlDiagnosis,
-  location = lookups$ddlLocation,
+  body_part = raw_lookups$ddlBodyPart,
+  diag = raw_lookups$ddlDiagnosis,
+  location = raw_lookups$ddlLocation,
+  sex = raw_lookups$ddlSex,
   fmv = fmv,
-  disposition = disposition
+  disposition = disposition,
+  race = race
 )
 
 saveRDS(lookups, "data-raw/lookups.rds")
