@@ -11,7 +11,7 @@ remote <- paste0("https://www.cpsc.gov/cgibin/NEISSQuery/Data/Archived%20Data/",
 
 # Download missing files
 missing <- !file_exists(local)
-map2(remote[missing], local[missing], download.file)
+walk2(remote[missing], local[missing], download.file)
 
 # Read excel files --------------------------------------------------------
 
@@ -58,7 +58,10 @@ injuries <- all %>%
     location =    lookup(location, lookups$location),
     fmv =         lookup(fmv, lookups$fmv),
     disposition = lookup(disposition, lookups$disposition),
-    race_other =  tolower(race_other)
+    race_other =  tolower(race_other),
+    narrative =   paste0(narrative1, coalesce(narrative2, "")),
+    narrative1 =  NULL,
+    narrative2 =  NULL,
   ) %>%
   arrange(case_num)
 

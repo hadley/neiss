@@ -24,7 +24,7 @@
   \item{location}{Locale where injury occurred.}
   \item{fmv}{Fire department involvement}
   \item{prod1,prod2}{Consumer product codes. Order is not important.}
-  \item{narrative}{Description of what victim was doing, products involved,
+  \item{narrative1,narrative2}{Description of what victim was doing, products involved,
    and locale of the incident (all upper case).}
 }}
 \source{
