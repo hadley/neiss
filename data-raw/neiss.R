@@ -68,4 +68,4 @@ injuries <- all %>%
 # Ages above 200 = (age - 200) / 12
 injuries$age[injuries$age > 200] <- (injuries$age[injuries$age > 200] - 200) / 12
 
-devtools::use_data(injuries, overwrite = TRUE)
+usethis::use_data(injuries, overwrite = TRUE, compress = "gzip")
