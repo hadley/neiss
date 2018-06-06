@@ -26,7 +26,7 @@ population <- pop_raw %>%
     sex = "Gender",
     n = "Population"
   ) %>%
-  filter(year >= 2000, year <= 2016, age >= 0, age <= 84) %>%
+  filter(year >= 2013, year <= 2017, age >= 0, age <= 84) %>%
   mutate(sex = str_to_lower(sex))
 
 use_data(population, overwrite = TRUE)

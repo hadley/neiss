@@ -4,7 +4,10 @@ library(fs)
 
 # Ensure we have local copy -----------------------------------------------
 
-year <- 2009:2016
+# only take last five years to keep data in GitHub's limits
+latest <- 2017
+year <- (latest - 5 + 1):latest
+
 names <- str_glue("{year}/neiss{year}.xlsx")
 local <- path("data-raw", path_file(names))
 remote <- paste0("https://www.cpsc.gov/cgibin/NEISSQuery/Data/Archived%20Data/", names)

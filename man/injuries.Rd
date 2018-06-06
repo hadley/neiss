@@ -24,7 +24,7 @@
   \item{location}{Locale where injury occurred.}
   \item{fmv}{Fire department involvement}
   \item{prod1,prod2}{Consumer product codes. Order is not important.}
-  \item{narrative1,narrative2}{Description of what victim was doing, products involved,
+  \item{narrative}{Description of what victim was doing, products involved,
    and locale of the incident (all upper case).}
 }}
 \source{
@@ -35,7 +35,7 @@ injuries
 }
 \description{
 The NEISS is a probability sample of hospital emergency departments in the
-United States and its territories. This data set contains all data from
-2009 to 2014.
+United States and its territories. This data set contains data from
+last five years.
 }
 \keyword{datasets}

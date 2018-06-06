@@ -1,8 +1,8 @@
 #' National Electronic Injury Surveillance System
 #'
 #' The NEISS is a probability sample of hospital emergency departments in the
-#' United States and its territories. This data set contains all data from
-#' 2009 to 2014.
+#' United States and its territories. This data set contains data from
+#' last five years.
 #'
 #' @source \url{http://www.cpsc.gov/en/Research--Statistics/NEISS-Injury-Data/}
 #' @format A data frame with 2,332,957 rows and 18 variables:
