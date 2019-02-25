@@ -1,11 +1,11 @@
 # Read in US census population data, restrict year range and age range
-# Data source: https://wonder.cdc.gov/Bridged-Race-v2016.HTML
+# Data source: https://wonder.cdc.gov/Bridged-Race-v2017.HTML
 
 library(tidyverse)
 filter <- dplyr::filter
 
 pop_raw <- read_tsv(
-  "data-raw/Bridged-Race Population Estimates 1990-2016.txt",
+  "data-raw/Bridged-Race Population Estimates 1990-2017.txt",
   col_types = cols(
     .default = col_skip(),
     `Yearly July 1st Estimates` = col_integer(),
